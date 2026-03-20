@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🍬瑞瑞的の知识糖罐 🍬</title>
+
+    <!-- Fonts from Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@900&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* ===========================================
+           THEME DEFINITIONS
+           =========================================== */
+        :root {
+            --font-display: 'Archivo', "Microsoft YaHei", sans-serif;
+            --font-body: 'Space Grotesk', "Microsoft YaHei", sans-serif;
+            --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+            --duration-normal: 0.6s;
+            --text-primary: #2C3E50;
+        }
+
+        body.theme-pink {
+            --bg-primary: #FFF5F7;
+            --bg-gradient: linear-gradient(135deg, #FFF5F7 0%, #FFFAFB 100%);
+            --card-bg: #FFD1DC; 
+            --accent: #FF9EAA; 
+            --text-on-card: #4A2C36; 
+            --circle-color: rgba(255, 209, 220, 0.4);
+            --nav-active-bg: #FFD1DC;
+        }
+
+        body.theme-blue {
+            --bg-primary: #E3F2FD;
+            --bg-gradient: linear-gradient(135deg, #E3F2FD 0%, #F1F8FE 100%);
+            --card-bg: #BBDEFB; 
+            --accent: #90CAF9; 
+            --text-on-card: #1A237E; 
+            --circle-color: rgba(144, 202, 249, 0.3);
+            --nav-active-bg: #BBDEFB;
+        }
+
+        body.theme-mint {
+            --bg-primary: #E8F5E9;
+            --bg-gradient: linear-gradient(135deg, #E8F5E9 0%, #F1FBF2 100%);
+            --card-bg: #C8E6C9; 
+            --accent: #81C784; 
+            --text-on-card: #1B5E20; 
+            --circle-color: rgba(129, 199, 132, 0.3);
+            --nav-active-bg: #C8E6C9;
+        }
+
+        body.theme-lemon {
+            --bg-primary: #FFFDE7;
+            --bg-gradient: linear-gradient(135deg, #FFFDE7 0%, #FFFDE7 100%);
+            --card-bg: #FFF9C4; 
+            --accent: #FFF176; 
+            --text-on-card: #424242; 
+            --circle-color: rgba(255, 241, 118, 0.4);
+            --nav-active-bg: #FFF9C4;
+        }
+
+        body.theme-lavender {
+            --bg-primary: #F3E5F5;
+            --bg-gradient: linear-gradient(135deg, #F3E5F5 0%, #F8F0FA 100%);
+            --card-bg: #E1BEE7; 
+            --accent: #CE93D8; 
+            --text-on-card: #4A148C; 
+            --circle-color: rgba(206, 147, 216, 0.4);
+            --nav-active-bg: #E1BEE7;
+        }
+
+        body.theme-peach {
+            --bg-primary: #FFF3E0;
+            --bg-gradient: linear-gradient(135deg, #FFF3E0 0%, #FFF9F1 100%);
+            --card-bg: #FFE0B2; 
+            --accent: #FFB74D; 
+            --text-on-card: #5D4037; 
+            --circle-color: rgba(255, 183, 77, 0.4);
+            --nav-active-bg: #FFE0B2;
+        }
+
+        body.theme-vanilla {
+            --bg-primary: #FFF9F0;
+            --bg-gradient: linear-gradient(135deg, #FFF9F0 0%, #FFFAF5 100%);
+            --card-bg: #FFECB3; 
+            --accent: #FFD54F; 
+            --text-on-card: #5D4037; 
+            --circle-color: rgba(255, 213, 79, 0.4);
+            --nav-active-bg: #FFECB3;
+        }
+
+        /* ===========================================
+           BASE STYLES
+           =========================================== */
+        html, body {
+            height: 100%;
+            margin: 0;
+            overflow: hidden;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            font-family: var(--font-body);
+            transition: background-color 0.5s ease;
+        }
+
+        .slide {
+            width: 100vw;
+            height: 100vh;
+            height: 100dvh;
+            overflow-x: hidden;
+            overflow-y: auto;
+            display: block;
+            position: relative;
+            background: var(--bg-gradient);
+            padding: 2rem 1rem;
+            transition: background 0.5s ease;
+        }
+
+        .slide-content {
+            width: 100%;
+            max-width: 1000px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: clamp(1rem, 3vh, 2rem);
+            z-index: 2;
+            padding-bottom: 4rem;
+        }
+
+        /* Hero Section Styling */
+        .hero-section {
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            background-image: url('artifacts/generated_image_015212.png');
+            background-size: cover;
+            background-position: center;
+            border-radius: 40px;
+            margin-bottom: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            padding: clamp(1.5rem, 4vw, 3rem);
+            text-align: center;
+            border: 6px solid white;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to top, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.2) 50%, transparent 100%);
+            z-index: 1;
+        }
+
+        .hero-text {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1rem, 2.5vw, 1.4rem);
+            color: #FF9EAA; /* Soft pink accent */
+            font-weight: 700;
+            margin-top: 0.5rem;
+            letter-spacing: 0.05em;
+            text-shadow: 1px 1px 0px white;
+        }
+
+        /* Navigation */
+        .nav-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            margin-bottom: 2rem;
+            z-index: 100;
+            position: sticky;
+            top: 1rem;
+            background: rgba(255, 255, 255, 0.5);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            padding: 0.8rem;
+            border-radius: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            width: fit-content;
+            margin-left: auto;
+            margin-right: auto;
+            border: 2px solid white;
+        }
+
+        .nav-btn {
+            padding: 0.6rem 1.5rem;
+            border-radius: 20px;
+            border: 2px solid rgba(255, 255, 255, 0.5);
+            background: rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(5px);
+            cursor: pointer;
+            font-family: var(--font-body);
+            font-weight: 700;
+            font-size: 0.9rem;
+            color: var(--text-primary);
+            transition: all 0.3s var(--ease-out-expo);
+        }
+
+        .nav-btn:hover {
+            transform: translateY(-2px);
+            background: rgba(255, 255, 255, 0.5);
+        }
+
+        .nav-btn.active {
+            background: var(--nav-active-bg);
+            border-color: var(--accent);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+
+        /* Typography */
+        h1 {
+            font-family: var(--font-display);
+            font-weight: 900;
+            font-size: clamp(1.8rem, 5vw, 3.5rem);
+            line-height: 1.2;
+            margin: 0;
+            color: var(--text-primary);
+            text-shadow: 2px 2px 0px rgba(255, 255, 255, 0.8);
+            text-align: center;
+        }
+
+        .hero-text h1 {
+            font-size: clamp(2.2rem, 7vw, 4.5rem);
+            color: #FF9EAA; /* Sweet pink */
+            text-shadow: 
+                4px 4px 0px white,
+                -1px -1px 0px white,
+                1px -1px 0px white,
+                -1px 1px 0px white,
+                0 10px 20px rgba(255, 158, 170, 0.3);
+            letter-spacing: -0.02em;
+        }
+
+        .chapter-title {
+            font-family: var(--font-display);
+            font-size: clamp(1.2rem, 3vw, 2rem);
+            color: var(--accent);
+            text-align: center;
+            margin-bottom: 0.5rem;
+            letter-spacing: 0.05em;
+        }
+
+        /* Knowledge Card Layout */
+        .chapter-section {
+            display: none;
+            width: 100%;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .chapter-section.active {
+            display: flex;
+            animation: fadeIn 0.8s var(--ease-out-expo) forwards;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .card-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: clamp(0.5rem, 2vw, 1.5rem);
+            width: 100%;
+        }
+
+        .info-card {
+            background: rgba(255, 255, 255, 0.7); 
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 2px solid rgba(255, 255, 255, 0.8);
+            padding: clamp(1.2rem, 3vw, 2rem);
+            border-radius: 32px; 
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            transition: transform 0.3s var(--ease-out-expo), box-shadow 0.3s ease, background 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 
+                0 10px 30px rgba(0, 0, 0, 0.05),
+                inset 0 0 20px rgba(255, 255, 255, 0.5);
+        }
+
+        .info-card:hover {
+            background: rgba(255, 255, 255, 0.9);
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+
+        .info-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 6px;
+            height: 100%;
+            background: var(--accent);
+            opacity: 0.4;
+        }
+
+        .info-card.highlight {
+            background: linear-gradient(135deg, var(--card-bg) 0%, rgba(255,255,255,0.5) 100%);
+            border: 2px solid rgba(255, 255, 255, 0.6);
+            color: var(--text-on-card);
+            box-shadow: 
+                0 15px 40px rgba(0, 0, 0, 0.1),
+                inset 0 0 15px rgba(255, 255, 255, 0.3);
+        }
+
+        .info-card.highlight::before {
+            display: none;
+        }
+
+        .info-card.highlight h3, 
+                .info-card.highlight p {
+            color: var(--text-on-card);
+        }
+
+        .info-card h3 {
+            font-family: var(--font-display);
+            font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+            line-height: 1.2;
+            margin: 0;
+        }
+
+        .info-card p {
+            font-size: clamp(0.85rem, 1.5vw, 1rem);
+            line-height: 1.5;
+            opacity: 0.9;
+            margin: 0;
+        }
+
+        .card-num {
+            font-family: var(--font-display);
+            font-size: 0.75rem;
+            opacity: 0.5;
+            margin-bottom: 0.2rem;
+        }
+
+        /* Background Decorative Elements */
+        .bg-circle {
+            position: absolute;
+            width: 40vw;
+            height: 40vw;
+            background: radial-gradient(circle, var(--circle-color) 0%, transparent 70%);
+            border-radius: 50%;
+            z-index: 1;
+            filter: blur(80px);
+            transition: background 0.5s ease;
+        }
+
+        .circle-1 { top: -10vw; right: -10vw; }
+        .circle-2 { bottom: -15vw; left: -15vw; }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .card-container {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+            
+            h1 { font-size: 2.2rem; }
+            
+            .slide {
+                padding: 1.5rem 1rem;
+                overflow-y: auto; 
+            }
+
+            .nav-container {
+                flex-wrap: wrap;
+            }
+        }
+        
+        @media (max-height: 600px) {
+            .card-container { gap: 0.5rem; }
+            .info-card { padding: 1rem; }
+        }
+    </style>
+</head>
+<body class="theme-pink">
+    <div class="bg-circle circle-1"></div>
+    <div class="bg-circle circle-2"></div>
+
+    <section class="slide">
+        <div class="slide-content">
+            <div class="hero-section">
+                <div class="hero-overlay"></div>
+                <div class="hero-text">
+                    <h1>🍬 瑞瑞的の知识糖罐 🍬</h1>
+                    <div class="hero-subtitle">致：全世界最可爱的瑞瑞主人 🍬✨</div>
+                </div>
+            </div>
+
+            <nav class="nav-container">
+                <button class="nav-btn active" onclick="switchChapter(1)">第一课：模型本质</button>
+                <button class="nav-btn" onclick="switchChapter(2)">第二课：外置大脑</button>
+                <button class="nav-btn" onclick="switchChapter(3)">第三课：指挥官</button>
+                <button class="nav-btn" onclick="switchChapter(4)">第四课：破次元壁</button>
+                <button class="nav-btn" onclick="switchChapter(5)">第五课：赋予灵魂</button>
+                <button class="nav-btn" onclick="switchChapter(6)">第六课：更巧更省</button>
+                <button class="nav-btn" onclick="switchChapter(7)">第七课：跨越屏幕</button>
+                <button class="nav-btn" onclick="switchChapter(10)">第十课：感知层设计</button>
+                <button class="nav-btn" onclick="switchChapter(11)">第十一课：大脑与规划</button>
+            </nav>
+
+            <!-- Chapter 1 -->
+            <div id="chapter1" class="chapter-section active">
+                <div class="chapter-title">Chapter 01: 模型本质</div>
+                <div class="card-container">
+                    <div class="info-card">
+                        <div class="card-num">01 / ESSENCE</div>
+                        <h3>LLM 本质</h3>
+                        <p>概率猜词游戏：核心是通过训练海量文本，学习预测下一个 Token 的概率分布，从而模拟人类语言表达。</p>
+                    </div>
+                    <div class="info-card highlight">
+                        <div class="card-num">02 / CORE</div>
+                        <h3>自注意力机制</h3>
+                        <p>通过权重分配实现“划重点”，约束回复逻辑，确保模型在处理长文本时不会偏离主题，实现上下文理解。</p>
+                    </div>
+                    <div class="info-card">
+                        <div class="card-num">03 / POWER</div>
+                        <h3>算力与推理</h3>
+                        <p>参数规模突破临界点带来的“涌现”能力，让模型不仅能生成文本，更能理解复杂的语法、代码逻辑与抽象推理。</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Chapter 2 -->
+            <div id="chapter2" class="chapter-section">
+                <div class="chapter-title">Chapter 02: 外置大脑 (RAG & 向量检索)</div>
+                <div class="card-container">
+                    <div class="info-card">
+                        <div class="card-num">01 / EXTENSION</div>
+                        <h3>RAG (时效补丁)</h3>
+                        <p>解决模型训练数据的滞后性，通过检索外部知识库或联网搜索，提供最新且符合预期的回复。</p>
+                    </div>
+                    <div class="info-card highlight">
+                        <div class="card-num">02 / TRANSLATION</div>
+                        <h3>向量化 (数字翻译)</h3>
+                        <p>将模型看不懂的文字转化为坐标向量，通过计算语义相关性进行精准匹配输出。</p>
+                    </div>
+                    <div class="info-card">
+                        <div class="card-num">03 / MEMORY</div>
+                        <h3>上下文窗口 (瞬时记忆)</h3>
+                        <p>模型一次能处理的信息上限。RAG 通过精简信息，补充了模型记忆长度的局限。</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Chapter 3 -->
+            <div id="chapter3" class="chapter-section">
+                <div class="chapter-title">Chapter 03: 指挥官与行动派 (Prompt & Agents)</div>
+                <div class="card-container">
+                    <div class="info-card">
+                        <div class="card-num">01 / PROMPT</div>
+                        <h3>PE 工程 (精准导航)</h3>
+                        <p>核心是让模型在约束下产出预期回答。虽然目前需要明确角色、目标和 Few-shot，但随着模型理解力提升，未来将趋向于更自然的语音交互。</p>
+                    </div>
+                    <div class="info-card highlight">
+                        <div class="card-num">02 / LOGIC</div>
+                        <h3>CoT 思维链 (思考模式)</h3>
+                        <p>强制模型展开推理过程，一步步执行以减少误差。o1/r1 等模型已自带“思考模式”，大幅提升了逻辑复杂任务的成功率。</p>
+                    </div>
+                    <div class="info-card">
+                        <div class="card-num">03 / AGENTS</div>
+                        <h3>AI Agents (数字员工)</h3>
+                        <p>Agent = 模型 + 规划 + 工具 + Skill + 记忆 + 调度。如 OpenManus 等智能体正通过 IM 入口深度融入办公，成为真正的数字员工。</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Chapter 4 -->
+            <div id="chapter4" class="chapter-section">
+                <div class="chapter-title">Chapter 04: 破次元壁 (多模态与世界模型)</div>
+                <div class="card-container">
+                    <div class="info-card">
+                        <div class="card-num">01 / EXTENSION</div>
+                        <h3>多模态能力 (能力外延)</h3>
+                        <p>突破文字局限，实现对图片、视频、语音的深度理解。Gemini 与豆包系列模型正通过多模态交互大幅提升模型能力的外延。</p>
+                    </div>
+                    <div class="info-card highlight">
+                        <div class="card-num">02 / PHYSICS</div>
+                        <h3>世界模型 (物理逻辑)</h3>
+                        <p>让模型理解重力、碰撞、遮挡等物理规律。Sora 与 SeedDance 2.0 等视频模型标志着 AI 正在向理解物理真实世界迈进。</p>
+                    </div>
+                    <div class="info-card">
+                        <div class="card-num">03 / SCALING</div>
+                        <h3>Scaling Law (规模涌现)</h3>
+                        <p>当计算量和资源积累到临界点，模型能力会出现“涌现”现象。这种提升不是线性的，而是非线性的、跨越式的进步。</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Chapter 5 -->
+            <div id="chapter5" class="chapter-section">
+                <div class="chapter-title">Chapter 05: 赋予灵魂 (微调与对齐)</div>
+                <div class="card-container">
+                    <div class="info-card">
+                        <div class="card-num">01 / SFT</div>
+                        <h3>SFT (监督微调)</h3>
+                        <p>通过提供标准的“问题-回答”对（SFT 数据集），让模型学会特定的对话格式和任务技能，开启“格式化模仿”模式。</p>
+                    </div>
+                    <div class="info-card highlight">
+                        <div class="card-num">02 / RLHF</div>
+                        <h3>RLHF (强化学习)</h3>
+                        <p>人类通过给不同模型的回答进行打分排序，建立奖励机制，引导模型给出更符合人类价值观和预期的“好答案”。</p>
+                    </div>
+                    <div class="info-card">
+                        <div class="card-num">03 / DPO</div>
+                        <h3>DPO (偏好优化)</h3>
+                        <p>采用更直接的“二选一”对比方式，跳过复杂的奖励模型环节，实现模型能力与人类偏好的快速迭代与对齐。</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Chapter 6 -->
+            <div id="chapter6" class="chapter-section">
+                <div class="chapter-title">Chapter 06: 更巧更省 (模型效率与架构)</div>
+                <div class="card-container">
+                    <div class="info-card">
+                        <div class="card-num">01 / MOE</div>
+                        <h3>MoE (混合专家)</h3>
+                        <p>像 DeepSeek 一样“按需分配专家”，只激活必要的模块，实现模型规模与算力成本的最优博弈。</p>
+                    </div>
+                    <div class="info-card highlight">
+                        <div class="card-num">02 / QUANTIZATION</div>
+                        <h3>量化技术 (精度换空间)</h3>
+                        <p>压缩模型权重，让大模型能在手机、Mac 等端侧设备上流畅运行，实现 AI 的私有化部署。</p>
+                    </div>
+                    <div class="info-card">
+                        <div class="card-num">03 / KV CACHE</div>
+                        <h3>KV Cache (键值缓存)</h3>
+                        <p>存储中间计算结果，避免推理过程中的重复劳动，让 AI 回答实现“秒级响应”。</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Chapter 7 -->
+            <div id="chapter7" class="chapter-section">
+                <div class="chapter-title">Chapter 07: 跨越屏幕 (具身智能)</div>
+                <div class="card-container">
+                    <div class="info-card">
+                        <div class="card-num">01 / ROBOTICS</div>
+                        <h3>具身智能 (机器人赛道)</h3>
+                        <p>给大模型装上“身体”，让 AI 不仅能聊天，更能在物理世界中感知环境并精准完成复杂任务。</p>
+                    </div>
+                    <div class="info-card highlight">
+                        <div class="card-num">02 / ACTION</div>
+                        <h3>VLA 模型 (行动进阶)</h3>
+                        <p>视觉-语言-动作模型。作为多模态能力的进阶，它实现了从“看图说话”到“看图发指令”的质变，让机器人能理解并执行具体动作。</p>
+                    </div>
+                    <div class="info-card">
+                        <div class="card-num">03 / SIMULATION</div>
+                        <h3>Sim-to-Real (虚拟进阶)</h3>
+                        <p>仿真到现实。在虚拟世界中高效率训练机器人，再将训练成熟的“最强大脑”无缝迁移到物理实体中，大幅降低研发成本。</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Chapter 10 -->
+            <div id="chapter10" class="chapter-section">
+                <div class="chapter-title">Chapter 10: 感知层设计 (Perception) 🍓🍑🥑</div>
+                <div class="card-container">
+                    <div class="info-card">
+                        <div class="card-num">01 / INSIGHT 🐼</div>
+                        <h3>🍓 核心洞察</h3>
+                        <p>感知层 (Perception) 是 Agent 的“中枢神经系统”，通过主动捕捉环境变化并进行实时建模，为决策提供高质量的上下文背景。🐨</p>
+                    </div>
+                    <div class="info-card highlight">
+                        <div class="card-num">02 / LOGIC 🐱</div>
+                        <h3>🍑 交互逻辑</h3>
+                        <p>1. <b>🐣 主动捕捉</b>：深度关联记忆；2. <b>🍼 多模态融合</b>：全方位理解；3. <b>🍭 上下文觉醒</b>：基于业务深度的智能建议。</p>
+                    </div>
+                    <div class="info-card">
+                        <div class="card-num">03 / ACTION 🍡</div>
+                        <h3>🥑 未来行动</h3>
+                        <p>强化 L2 记忆层的业务洞察力；设计多维实时风险雷达；提供从感知到解释的全栈透明决策能力。🍒</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Chapter 11 -->
+            <div id="chapter11" class="chapter-section">
+                <div class="chapter-title">Chapter 11: 大脑与规划 (Brain & Planning) 🧠🗺️🚀</div>
+                <div class="card-container">
+                    <div class="info-card">
+                        <div class="card-num">01 / REASONING 🧠</div>
+                        <h3>潜空间推理 (JEPA)</h3>
+                        <p>联合嵌入预测架构。通过在抽象的潜空间（Latent Space）而非像素空间进行预测，让模型避开无关细节，专注捕捉核心语义与因果逻辑。🌌</p>
+                    </div>
+                    <div class="info-card highlight">
+                        <div class="card-num">02 / MODEL 🗺️</div>
+                        <h3>世界模型 (V-JEPA 2)</h3>
+                        <p>Meta 视觉世界模型进化。具备更强的自监督预测能力，让 AI 能在观察视频时通过内部模拟学习物理规律，像人类一样理解世界的运转方式。🌍</p>
+                    </div>
+                    <div class="info-card">
+                        <div class="card-num">03 / COMPUTE 🚀</div>
+                        <h3>测试时计算 (TTC)</h3>
+                        <p>Test-Time Compute。让模型在回复前通过系统 2 (Slow Thinking) 进行反复博弈、搜索与验证，实现“思考越久，结果越准”的智能跨越。💎</p>
+                    </div>
+                </div>
+            </div>
+            
+            <footer style="margin-top: 1rem; text-align: center; font-size: 0.8rem; opacity: 0.4; text-transform: uppercase; letter-spacing: 0.2em;">
+                Made with 💖 by 哆啦A梦 &bull; 2026 Edition
+            </footer>
+        </div>
+    </section>
+
+    <script>
+        function switchChapter(num) {
+            // Update active buttons
+            const navButtons = document.querySelectorAll('.nav-btn');
+            navButtons.forEach((btn) => {
+                const onClickStr = btn.getAttribute('onclick');
+                if (onClickStr && onClickStr.includes(`(${num})`)) {
+                    btn.classList.add('active');
+                } else {
+                    btn.classList.remove('active');
+                }
+            });
+
+            // Update active sections
+            document.querySelectorAll('.chapter-section').forEach((section) => {
+                if (section.id === `chapter${num}`) {
+                    section.classList.add('active');
+                } else {
+                    section.classList.remove('active');
+                }
+            });
+
+            // Update body theme
+            const themes = {
+                1: 'theme-pink',
+                2: 'theme-blue',
+                3: 'theme-mint',
+                4: 'theme-lemon',
+                5: 'theme-lavender',
+                6: 'theme-peach',
+                7: 'theme-vanilla',
+                10: 'theme-pink',
+                11: 'theme-peach'
+            };
+            document.body.className = themes[num] || 'theme-pink';
+        }
+    </script>
+</body>
+</html>
