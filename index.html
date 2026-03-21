@@ -92,6 +92,17 @@
             --nav-active-bg: #FFECB3;
         }
 
+        body.theme-sea-salt {
+            --bg-primary: #E3F2FD;
+            --bg-gradient: linear-gradient(135deg, #E3F2FD 0%, #F0F9FF 100%);
+            --card-bg: #BBDEFB;
+            --accent: #64B5F6;
+            --text-on-card: #0D47A1;
+            --circle-color: rgba(100, 181, 246, 0.3);
+            --nav-active-bg: #BBDEFB;
+        }
+
+
         /* ===========================================
            BASE STYLES
            =========================================== */
@@ -417,6 +428,9 @@
                 <button class="nav-btn" onclick="switchChapter(7)">第七课：跨越屏幕</button>
                 <button class="nav-btn" onclick="switchChapter(10)">第十课：感知层设计</button>
                 <button class="nav-btn" onclick="switchChapter(11)">第十一课：大脑与规划</button>
+                <button class="nav-btn" onclick="switchChapter(12)">第十二课：OpenClaw 记忆</button>
+                <button class="nav-btn" onclick="switchChapter(13)">第十三课：电脑执行范式</button>
+                <button class="nav-btn" onclick="switchChapter(14)">第十四课：万能插头</button>
             </nav>
 
             <!-- Chapter 1 -->
@@ -617,6 +631,72 @@
                 </div>
             </div>
             
+            <!-- Chapter 12 -->
+            <div id="chapter12" class="chapter-section">
+                <div class="chapter-title">Chapter 12: OpenClaw 记忆体系 (Memory Architecture) 🧊📊📝</div>
+                <div class="card-container">
+                    <div class="info-card">
+                        <div class="card-num">01 / DUAL-TRACK 🧊</div>
+                        <h3>Session & MD (双轨记忆)</h3>
+                        <p><b>设计逻辑：</b>短期 Session 负责瞬时上下文（指代消解）；长期 MD 负责事实沉淀。两者冷热分离，互不干扰。<br><b>PM 价值：</b>彻底规避“背景污染”，确保对话在万级并发下依然逻辑清晰、不串台。</p>
+                    </div>
+                    <div class="info-card highlight">
+                        <div class="card-num">02 / FLUSH 📊</div>
+                        <h3>Memory Flush (落盘机制)</h3>
+                        <p><b>设计逻辑：</b>在对话窗口压缩前，系统强制触发“静默轮次”，将核心结论从 Session 刷回 MD 文件持久化。<br><b>PM 价值：</b>解决长对话“遗忘症”，确保关键需求和共识在长周期对话中永远处于“Ready”状态。</p>
+                    </div>
+                    <div class="info-card">
+                        <div class="card-num">03 / READABLE 📝</div>
+                        <h3>人机共阅 (透明化记忆)</h3>
+                        <p><b>设计逻辑：</b>以 Markdown 文件为载体。记忆不再是黑盒，而是人类可见、可直接编辑、可纠偏的文档。<br><b>PM 价值：</b>建立“黑盒”之外的信任感。如果 Agent 记错了，手动改一下 MD 即可零成本完成“行为修正”。</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Chapter 13 -->
+            <div id="chapter13" class="chapter-section">
+                <div class="chapter-title">Chapter 13: 电脑执行范式 (VM & Claude Cowork) 💻🚀🛠️</div>
+                <div class="card-container">
+                    <div class="info-card">
+                        <div class="card-num">01 / VM EXECUTION 💻</div>
+                        <h3>从“对话”到“执行”</h3>
+                        <p><b>设计逻辑：</b>不仅是 Chatbot，而是给 AI 一个受控的虚拟机（VM）操作系统。让它能像真人一样装软件、跑服务、改文件。<br><b>PM 价值：</b>核心指标从“回答准确率”变为“任务完备率”，大幅降低 SaaS 集成门槛。</p>
+                    </div>
+                    <div class="info-card highlight">
+                        <div class="card-num">02 / SKILLS 🛠️</div>
+                        <h3>Skills 技能自动化</h3>
+                        <p><b>设计逻辑：</b>将长链路任务拆解为可复用的 Skill 组件（如一键部署、自动清洗）。AI 通过组合 Skill 实现端到端自动化。<br><b>PM 价值：</b>以通用能力覆盖垂直场景，不再需要为每个场景写死业务逻辑。</p>
+                    </div>
+                    <div class="info-card">
+                        <div class="card-num">03 / INFRASTRUCTURE 🚀</div>
+                        <h3>IaaS for AI (云端办公位)</h3>
+                        <p><b>设计逻辑：</b>AI 竞争的本质是云端算力与环境隔离的竞争。提供稳定、安全的 VM 是 Agent 商业化的基石。<br><b>PM 价值：</b>构建自动化帝国的底座，让 AI 拥有独立的数字身份与生产力工具。</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Chapter 14 -->
+            <div id="chapter14" class="chapter-section">
+                <div class="chapter-title">Chapter 14: 万能插头 (MCP 协议与工具生态) 🔌🛠️🔗</div>
+                <div class="card-container">
+                    <div class="info-card">
+                        <div class="card-num">01 / DEFINITION 🔌</div>
+                        <h3>核心定义</h3>
+                        <p><b>定义：</b>Model Context Protocol (MCP) 是 AI 时代的“USB 接口”。它定义了模型如何与外部环境（文件、数据库、API）交互的统一标准，将原本封闭的模型转化为开放的连接器。<br><b>PM 价值：</b>打破模型信息孤岛，实现数据互联互通。</p>
+                    </div>
+                    <div class="info-card highlight">
+                        <div class="card-num">02 / PRINCIPLE 🛠️</div>
+                        <h3>运行原理</h3>
+                        <p><b>原理：</b>通过“Client-Server”标准协议实现解耦。开发者只需编写一次 MCP Server（如读取 Jira），任何支持 MCP 的应用（如 Claude, Aime）即可立即可用。<br><b>PM 价值：</b>极大降低了 Agent 技能的开发与分发成本。</p>
+                    </div>
+                    <div class="info-card">
+                        <div class="card-num">03 / ACTION 🔗</div>
+                        <h3>业务应用与示例</h3>
+                        <p><b>应用：</b>快速构建全栈自动化流程。<b>例子：</b>瑞瑞通过 Aime 监听 GitHub 事件，触发 MCP 工具读取代码变更，结合 Jira 任务信息，自动生成发布文档并通知飞书群——全链路无缝连接。<br><b>PM 价值：</b>让 AI 真正“有手有脚”，实现从“聊天”到“协同执行”的质变。</p>
+                    </div>
+                </div>
+            </div>
+
             <footer style="margin-top: 1rem; text-align: center; font-size: 0.8rem; opacity: 0.4; text-transform: uppercase; letter-spacing: 0.2em;">
                 Made with 💖 by 哆啦A梦 &bull; 2026 Edition
             </footer>
@@ -655,7 +735,10 @@
                 6: 'theme-peach',
                 7: 'theme-vanilla',
                 10: 'theme-pink',
-                11: 'theme-peach'
+                11: 'theme-peach',
+                12: 'theme-sea-salt',
+                13: 'theme-mint',
+                14: 'theme-lavender'
             };
             document.body.className = themes[num] || 'theme-pink';
         }
