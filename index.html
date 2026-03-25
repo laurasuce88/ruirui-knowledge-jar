@@ -102,10 +102,34 @@
             --nav-active-bg: #BBDEFB;
         }
 
+        body.theme-matcha {
+            --bg-primary: #F0FFF4;
+            --bg-gradient: linear-gradient(135deg, #F0FFF4 0%, #F6FFFA 100%);
+            --card-bg: #C8E6C9;
+            --accent: #66BB6A;
+            --text-on-card: #1B5E20;
+            --circle-color: rgba(102, 187, 106, 0.3);
+            --nav-active-bg: #C8E6C9;
+        }
+
+        body.theme-coral {
+            --bg-primary: #FFF7F4;
+            --bg-gradient: linear-gradient(135deg, #FFF7F4 0%, #FFFAF8 100%);
+            --card-bg: #FFCCBC;
+            --accent: #FF8A65;
+            --text-on-card: #BF360C;
+            --circle-color: rgba(255, 138, 101, 0.3);
+            --nav-active-bg: #FFCCBC;
+        }
+
 
         /* ===========================================
            BASE STYLES
            =========================================== */
+        *, *::before, *::after {
+            box-sizing: border-box !important;
+        }
+
         html, body {
             height: 100%;
             margin: 0;
@@ -137,28 +161,64 @@
             flex-direction: column;
             gap: clamp(1rem, 3vh, 2rem);
             z-index: 2;
-            padding-bottom: 4rem;
+            padding: 0 1rem 4rem 1rem;
         }
 
         /* Hero Section Styling */
         .hero-section {
             width: 100%;
-            aspect-ratio: 16 / 9;
+            min-height: 40vh;
             background-image: url('artifacts/generated_image_015212.png');
             background-size: cover;
             background-position: center;
             border-radius: 40px;
-            margin-bottom: 1.5rem;
+            margin-bottom: 1rem;
             display: flex;
             flex-direction: column;
-            justify-content: flex-end;
+            justify-content: center;
             align-items: center;
             position: relative;
             overflow: hidden;
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-            padding: clamp(1.5rem, 4vw, 3rem);
+            padding: clamp(2rem, 5vw, 4rem);
             text-align: center;
             border: 6px solid white;
+            box-sizing: border-box !important;
+            background-color: var(--card-bg);
+        }
+
+        /* Floating Candies Decoration */
+        .candy-decor {
+            position: absolute;
+            font-size: 2rem;
+            opacity: 0.6;
+            filter: drop-shadow(0 5px 10px rgba(0,0,0,0.1));
+            animation: float-candy 6s ease-in-out infinite;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        @keyframes float-candy {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(15deg); }
+        }
+
+        .candy-1 { top: 10%; left: 10%; animation-delay: 0s; }
+        .candy-2 { top: 15%; right: 15%; animation-delay: 1s; }
+        .candy-3 { bottom: 20%; left: 20%; animation-delay: 2s; }
+        .candy-4 { bottom: 15%; right: 10%; animation-delay: 1.5s; }
+        .candy-5 { top: 50%; right: 5%; animation-delay: 3s; font-size: 1.5rem; }
+        .candy-6 { top: 40%; left: 5%; animation-delay: 4s; font-size: 1.5rem; }
+
+        .hero-glass-box {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            padding: 2rem;
+            border-radius: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            z-index: 5;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
         }
 
         .hero-overlay {
@@ -198,12 +258,11 @@
             background: rgba(255, 255, 255, 0.5);
             backdrop-filter: blur(15px);
             -webkit-backdrop-filter: blur(15px);
-            padding: 0.8rem;
+            padding: 1rem;
             border-radius: 30px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-            width: fit-content;
-            margin-left: auto;
-            margin-right: auto;
+            width: 100%;
+            box-sizing: border-box !important;
             border: 2px solid white;
         }
 
@@ -412,7 +471,16 @@
         <div class="slide-content">
             <div class="hero-section">
                 <div class="hero-overlay"></div>
-                <div class="hero-text">
+                
+                <!-- Floating decorations to fill the "empty" space -->
+                <div class="candy-decor candy-1">🍬</div>
+                <div class="candy-decor candy-2">🍭</div>
+                <div class="candy-decor candy-3">🍯</div>
+                <div class="candy-decor candy-4">✨</div>
+                <div class="candy-decor candy-5">🍓</div>
+                <div class="candy-decor candy-6">🍪</div>
+
+                <div class="hero-text hero-glass-box">
                     <h1>🍬 瑞瑞的の知识糖罐 🍬</h1>
                     <div class="hero-subtitle">致：全世界最可爱的瑞瑞主人 🍬✨</div>
                 </div>
@@ -426,11 +494,15 @@
                 <button class="nav-btn" onclick="switchChapter(5)">第五课：赋予灵魂</button>
                 <button class="nav-btn" onclick="switchChapter(6)">第六课：更巧更省</button>
                 <button class="nav-btn" onclick="switchChapter(7)">第七课：跨越屏幕</button>
+                <button class="nav-btn" onclick="switchChapter(8)">第八课：AI 炼金术</button>
+                <button class="nav-btn" onclick="switchChapter(9)">第九课：慢思考</button>
                 <button class="nav-btn" onclick="switchChapter(10)">第十课：感知层设计</button>
                 <button class="nav-btn" onclick="switchChapter(11)">第十一课：大脑与规划</button>
                 <button class="nav-btn" onclick="switchChapter(12)">第十二课：OpenClaw 记忆</button>
                 <button class="nav-btn" onclick="switchChapter(13)">第十三课：电脑执行范式</button>
                 <button class="nav-btn" onclick="switchChapter(14)">第十四课：万能插头</button>
+                <button class="nav-btn" onclick="switchChapter(15)">第十五课：PM 进阶指南</button>
+                <button class="nav-btn" onclick="switchChapter(16)">第十六课：集群协作</button>
             </nav>
 
             <!-- Chapter 1 -->
@@ -587,6 +659,50 @@
                 </div>
             </div>
 
+            <!-- Chapter 8 -->
+            <div id="chapter8" class="chapter-section">
+                <div class="chapter-title">Chapter 08: 炼金术与永动机 (合成数据与飞轮) 🧪🔄💎</div>
+                <div class="card-container">
+                    <div class="info-card">
+                        <div class="card-num">01 / SYNTHETIC 🧪</div>
+                        <h3>合成数据 (炼金术)</h3>
+                        <p><b>定义：</b> LLM 时代由 AI 生成的用于训练的新型燃料。<br><b>原理：</b> 通过 Self-Instruct 等技术，让大模型生成并过滤高质量数据，打破真实世界数据的枯竭瓶颈。<br><b>PM 价值：</b> 极低成本构建垂直领域的“数据孤岛”，提升长尾场景模型能力。</p>
+                    </div>
+                    <div class="info-card highlight">
+                        <div class="card-num">02 / FLYWHEEL 🔄</div>
+                        <h3>数据飞轮 (永动机)</h3>
+                        <p><b>定义：</b> 模型部署后通过用户交互闭环不断进化的良性循环。<br><b>原理：</b> 用户提问 -> 模型回答 -> 偏好收集 (RLHF) -> 模型再训练。<br><b>PM 价值：</b> 让产品具备“越用越聪明”的自增值能力，形成壁垒。</p>
+                    </div>
+                    <div class="info-card">
+                        <div class="card-num">03 / EXAMPLE 💎</div>
+                        <h3>合成数据示例</h3>
+                        <p><b>应用：</b> 开发医疗 Agent 时，真实病历隐私且稀缺。<br><b>例子：</b> 瑞瑞先让模型生成 10 万份符合医学逻辑的虚拟病历，再进行 SFT 微调——从 0 到 1 极速起航。<br><b>PM 价值：</b> 解决冷启动难题，缩短 80% 的研发周期。</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Chapter 09 -->
+            <div id="chapter9" class="chapter-section">
+                <div class="chapter-title">Chapter 09: 慢思考与推理时缩放 (Slow Thinking) 🧠📐🌿</div>
+                <div class="card-container">
+                    <div class="info-card">
+                        <div class="card-num">01 / COGNITION 🧠</div>
+                        <h3>系统 1 vs 系统 2</h3>
+                        <p><b>定义：</b> 将认知心理学中的“双系统理论”映射到 LLM。系统 1 是直觉式的快速响应，系统 2 是逻辑式的慢速推理。<br><b>原理：</b> 通过“推理时计算”（Test-Time Compute）引入思考阶段，生成长思维链（CoT）进行自我修正。<br><b>PM 价值：</b> 让 AI 在数学、编程等严谨场景下，具备超越单纯概率预测的深度逻辑能力。</p>
+                    </div>
+                    <div class="info-card highlight">
+                        <div class="card-num">02 / SCALING 📐</div>
+                        <h3>推理时缩放 (ITS)</h3>
+                        <p><b>定义：</b> 推理时计算。智能不仅是模型参数的函数，也是思考时间的函数。<br><b>原理：</b> 顺序缩放（延长 CoT）与并行缩放（多路径搜索 + 验证器 PRM/ORM）。<br><b>PM 价值：</b> “用时间换智能”。开发者可根据任务难度，动态调整算力预算（如 o3-mini 的低/中/高档位）。</p>
+                    </div>
+                    <div class="info-card">
+                        <div class="card-num">03 / INDUSTRY 🌿</div>
+                        <h3>CoT + 强化学习 (RL)</h3>
+                        <p><b>应用：</b> OpenAI o1/o3 与 DeepSeek R1 的核心路径。不再奖励答案，而是奖励“思考过程”。<br><b>例子：</b> R1 使用分组策略优化 (GRPO)，在有客观真值的领域（代码/数学）通过数万次“试错-学习”实现高性能推理。<br><b>PM 价值：</b> 极致的成本与性能平衡。DeepSeek R1 证明了推理成本可降低 70% 以上。</p>
+                    </div>
+                </div>
+            </div>
+
             <!-- Chapter 10 -->
             <div id="chapter10" class="chapter-section">
                 <div class="chapter-title">Chapter 10: 感知层设计 (Perception) 🍓🍑🥑</div>
@@ -697,6 +813,50 @@
                 </div>
             </div>
 
+            <!-- Chapter 15 -->
+            <div id="chapter15" class="chapter-section">
+                <div class="chapter-title">Chapter 15: AI 时代的 PM 进阶专题 (指数思维与 Evals 测评) 📈🎯🛡️</div>
+                <div class="card-container">
+                    <div class="info-card">
+                        <div class="card-num">01 / EXPONENTIAL 📈</div>
+                        <h3>指数级思维 (PM 进阶)</h3>
+                        <p><b>定义：</b> 面对 AI 每 6 个月翻倍进化的速度，放弃线性规划，采用跨越式设计。<br><b>原理：</b> 不为当下模型能力修补“小功能”，而是为未来 1 年后的模型能力预留“大槽位”。<br><b>PM 价值：</b> 确保产品在发布瞬间不会过时，具备长久生命力。</p>
+                    </div>
+                    <div class="info-card highlight">
+                        <div class="card-num">02 / EVALS 🎯</div>
+                        <h3>Evals 测评体系</h3>
+                        <p><b>定义：</b> 建立一套标准化的自动化测试集，取代“感觉好用”。<br><b>原理：</b> 将 Agent 的对话、推理、工具调用拆解为原子化的 Case，通过 LLM-as-a-Judge 进行打分。<br><b>PM 价值：</b> 让产品优化有据可依，彻底摆脱“优化一处，坏三处”的玄学迭代。</p>
+                    </div>
+                    <div class="info-card">
+                        <div class="card-num">03 / QUALITY 🛡️</div>
+                        <h3>测评应用示例</h3>
+                        <p><b>应用：</b> 对比两个版本的 Agent 性能。<br><b>例子：</b> 瑞瑞构建了 500 个边缘 Case 的 Evals 库，新模型上线前跑一次全量自动化测评，分秒间判定胜负。<br><b>PM 价值：</b> 构建工业级的 Agent 质量控制体系，确保业务稳定性。</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Chapter 16 -->
+            <div id="chapter16" class="chapter-section">
+                <div class="chapter-title">Chapter 16: Multi-Agent 系统与集群协作 (Multi-Agent Systems) 🤖🐝⚙️</div>
+                <div class="card-container">
+                    <div class="info-card">
+                        <div class="card-num">01 / EVOLUTION 🤖</div>
+                        <h3>从单体到集群</h3>
+                        <p><b>定义：</b> Multi-Agent 系统是多个自主智能体协作解决单体 Agent 无法完成的复杂问题的范式，本质是从"全能瑞士军刀"到"专业化团队"的转变。<br><b>原理：</b> 通过角色分工（规划者/执行者/评估者）和分而治之，规避单体的上下文窗口、知识边界和单故障点瓶颈。<br><b>PM 价值：</b> 构建"数字劳动力"，并行处理带来指数级生产力提升，单个 Agent 失败不影响全局。</p>
+                    </div>
+                    <div class="info-card highlight">
+                        <div class="card-num">02 / FRAMEWORKS 🐝</div>
+                        <h3>主流协作框架 (2026)</h3>
+                        <p><b>OpenAI Agents SDK</b>：轻量+可组合，核心是 Agent 与 Handoff 切换机制，适合高度定制化场景。<br><b>MetaGPT</b>：模拟"软件公司"，将 SOP 编码为框架，输入一行需求自动交付整个代码仓库。<br><b>CrewAI / AutoGen</b>：通用灵活，定义 Agent 角色 + Task + Process（串行/层级式），层级模式自动分配"经理"Agent 进行仲裁。</p>
+                    </div>
+                    <div class="info-card">
+                        <div class="card-num">03 / PROTOCOL ⚙️</div>
+                        <h3>通信与冲突解决</h3>
+                        <p><b>消息总线</b>：发布-订阅模式，松耦合，适合高频异步通知。<br><b>黑板系统</b>：全局共享内存，下游 Agent 读取上游产出，适合迭代增量协作（如 MetaGPT 文档驱动）。<br><b>仲裁器</b>：裁判 Agent，根据优先级或投票解决冲突；<b>CRDTs</b> 无锁并发编辑；<b>共识协议</b>（Raft/Paxos）保证多 Agent 决策一致性。</p>
+                    </div>
+                </div>
+            </div>
+
             <footer style="margin-top: 1rem; text-align: center; font-size: 0.8rem; opacity: 0.4; text-transform: uppercase; letter-spacing: 0.2em;">
                 Made with 💖 by 哆啦A梦 &bull; 2026 Edition
             </footer>
@@ -738,7 +898,11 @@
                 11: 'theme-peach',
                 12: 'theme-sea-salt',
                 13: 'theme-mint',
-                14: 'theme-lavender'
+                14: 'theme-lavender',
+                8: 'theme-sea-salt',
+                9: 'theme-matcha',
+                15: 'theme-peach',
+                16: 'theme-coral'
             };
             document.body.className = themes[num] || 'theme-pink';
         }
